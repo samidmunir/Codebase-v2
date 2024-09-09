@@ -3,3 +3,4 @@ Sami Munir | Rutgers University | sami.munir2001@gmail.com
 ## Harvard CS50 Intro Python Course
 1. hello-world
 2. variables
+3. functions
