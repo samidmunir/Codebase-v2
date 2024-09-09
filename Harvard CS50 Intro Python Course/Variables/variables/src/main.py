@@ -18,3 +18,8 @@ name = name.title()
 # we can also chain these functions right after one another for cleaner code.
 # name = input("What's your name?\n--> ").strip().title()
 print(f"\nHello, {name}")
+
+# splitting the user's name into first/last name
+first_name, last_name = name.split(" ")
+print(f"\nFirst name: {first_name}\nLast name: {last_name}")
+print(f"--> {first_name} {last_name[0]}.")
