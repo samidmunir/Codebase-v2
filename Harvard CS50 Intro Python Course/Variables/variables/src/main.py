@@ -23,3 +23,28 @@ print(f"\nHello, {name}")
 first_name, last_name = name.split(" ")
 print(f"\nFirst name: {first_name}\nLast name: {last_name}")
 print(f"--> {first_name} {last_name[0]}.")
+
+# integers in Python
+a = 2
+b = 3
+sum = a + b
+print(f"\na: {a} and b: {b}")
+print(f"a + b = {sum}")
+
+a = 999
+b = 1
+sum = a + b
+print(f"\na: {a} and b: {b}")
+print(f"a + b = {sum:,}")
+
+a = 2
+b = 3
+q = a / b
+print(f"\na: {a} and b: {b}")
+print(f"a / b = {round(q, 2)}")
+
+a = 3
+b = 14
+q = a / b
+print(f"\na: {a} and b: {b}")
+print(f"a / b = {q:.2f}")
