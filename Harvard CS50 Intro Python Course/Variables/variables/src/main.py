@@ -10,7 +10,11 @@ name = input("What's your name?\n--> ")
 # say hello to the user.
 print("\nHello,", name, sep = ' ', end = '\n')
 
-# say hello to user using format_string
-# - using split() to remove any whitespace on left/right
+# say hello to user using format_string.
+# - using split() to remove any whitespace on left/right.
 name = name.strip()
+# name = name.capitalize()
+name = name.title()
+# we can also chain these functions right after one another for cleaner code.
+# name = input("What's your name?\n--> ").strip().title()
 print(f"\nHello, {name}")
