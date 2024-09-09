@@ -8,4 +8,4 @@
 name = input("What's your name?\n--> ")
 
 # say hello to the user.
-print("\nHello", name)
+print("\nHello,", name, sep = ' ', end = '\n')
