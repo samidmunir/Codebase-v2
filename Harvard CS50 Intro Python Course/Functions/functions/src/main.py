@@ -9,8 +9,16 @@ def say_hello(name = "john doe"):
     f_name, l_name = name.split()
     print(f"\tHello, {f_name.capitalize()} {l_name.capitalize()[0]}.")
 
+def square_x(x):
+    print("\nrunning function square_x() -->")
+    square = x * x
+    return square
+
 def main():
     name = input("What's your full name?\n")
     say_hello(name)
+
+    x = 2
+    print(f"\tsquare({x}) is: {square_x(x)}")
 
 main()
