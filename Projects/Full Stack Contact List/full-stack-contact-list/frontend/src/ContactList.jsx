@@ -1,4 +1,6 @@
 /* eslint-disable react/prop-types */
+import React from "react";
+
 const ContactList = ({contacts}) => {
     return <div>
         <h2>Contacts</h2>
@@ -23,8 +25,7 @@ const ContactList = ({contacts}) => {
                                 <button>Delete</button>
                             </td>
                         </tr>
-                        )
-                    )
+                    ))
                 }
             </tbody>
         </table>

@@ -7,11 +7,9 @@ const ContactForm = ({existingContact = {}, updateCalback}) => {
     const [email, setEmail] = useState(existingContact.email || "");
 
     const updating = Object.entries(existingContact).length !== 0;
-
     
     const onSubmit = async (e) => {
         e.preventDefault();
-
         const data = {
             firstName,
             lastName,
@@ -31,21 +29,38 @@ const ContactForm = ({existingContact = {}, updateCalback}) => {
             const data = await response.json();
             alert(data.message);
         } else {
-            updateCalback();
+            // updateCalback();
         }
     }
 
-    return <form onSubmit={onSubmit}>
-        <div>
-            <label htmlFor="firstName">First Name:</label>
-            <input type="text" id="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
-            <label htmlFor="lastName">Last Name:</label>
-            <input type="text" id="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)}/>
-            <label htmlFor="email">Email:</label>
-            <input type="text" id="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
-        </div>
-        <button type="submit">Create Contact</button>
-    </form>
+    return (
+        <form onSubmit={onSubmit}>
+            <div>
+                <label htmlFor="firstName">First Name:</label>
+                <input 
+                    type="text" 
+                    id="firstName" 
+                    value={firstName} 
+                    onChange={(e) => setFirstName(e.target.value)}
+                />
+                <label htmlFor="lastName">Last Name:</label>
+                <input 
+                    type="text" 
+                    id="lastName" 
+                    value={lastName} 
+                    onChange={(e) => setLastName(e.target.value)}
+                />
+                <label htmlFor="email">Email:</label>
+                <input 
+                    type="text" 
+                    id="email" 
+                    value={email} 
+                    onChange={(e) => setEmail(e.target.value)}
+                />
+            </div>
+            <button type="submit">Create Contact</button>
+        </form>
+    );
 }
 
 export default ContactForm;
