@@ -6,3 +6,6 @@ Sami Munir | Rutgers University | sami.munir2001@gmail.com
 3. functions
 ## Projects
 * full-stack-contact-list
+## Rutgers
+### CS352 Internet Technology
+* Project 1
