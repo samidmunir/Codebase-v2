@@ -1,5 +1,4 @@
-import React from "react";
-
+/* eslint-disable react/prop-types */
 const ContactList = ({contacts}) => {
     return <div>
         <h2>Contacts</h2>
