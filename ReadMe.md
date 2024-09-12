@@ -11,3 +11,4 @@ Sami Munir | Rutgers University | sami.munir2001@gmail.com
 * Project 1
 ## Python Programming
 * Sockets
+* Functions
