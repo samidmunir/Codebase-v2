@@ -45,6 +45,7 @@ with open(args.out_file, 'wb') as write_file:
         # now we write whatever the server tells us to the out_file
         client_sock.sendall(line)
         answer = client_sock.recv(512)
+        print('answer from server:', answer)
         write_file.write(answer)
 
 # Close the socket (note this will be visible on the other side).
