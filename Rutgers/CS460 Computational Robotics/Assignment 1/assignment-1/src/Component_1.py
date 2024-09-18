@@ -17,7 +17,11 @@ def check_SOn(matrix: m, float: epsilon = 0.01) -> bool:
     return orthogonality_check and determinant_check
 
 def check_quaternion(vector: v, float: epsilon = 0.01) -> bool:
-    pass
+    # Step 1: Calculate the norm of the quaternion.
+    norm = np.linalg.norm(vector)
+    
+    # Step 2: Check if the norm is close to 1.
+    return np.isclose(norm, 1.0, atol = epsilon)
 
 def check_SEn(matrix: m, float: epsilon = 0.01) -> bool:
     pass
