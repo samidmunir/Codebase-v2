@@ -1,6 +1,6 @@
 import "./Navbar.css";
 
-const Navbar = () => {
+const Navbar = ({activeNavItem, setActiveNavItem}) => {
   return (
     <div className="Navbar">
       <div className="navbar-title-con">
@@ -8,11 +8,11 @@ const Navbar = () => {
       </div>
       <div className="navbar-items-con news-cycle-regular">
         <ul className="navbar-items">
-            <li className="active-item">Dashboard</li>
-            <li className="navbar-item">Schedules</li>
-            <li className="navbar-item">Bookings</li>
-            <li className="navbar-item">NOTAMs</li>
-            <li className="navbar-item">Settings</li>
+            <li className={activeNavItem === 1 ? "active-item" : "navbar-item"} onClick={() => setActiveNavItem(1)}>Dashboard</li>
+            <li className={activeNavItem === 2 ? "active-item" : "navbar-item"} onClick={() => setActiveNavItem(2)}>Schedules</li>
+            <li className={activeNavItem === 3 ? "active-item" : "navbar-item"} onClick={() => setActiveNavItem(3)}>Bookings</li>
+            <li className={activeNavItem === 4 ? "active-item" : "navbar-item"} onClick={() => setActiveNavItem(4)}>NOTAMs</li>
+            <li className={activeNavItem === 5 ? "active-item" : "navbar-item"} onClick={() => setActiveNavItem(5)}>Settings</li>
         </ul>
       </div>
       <div className="navbar-controls-con news-cycle-regular">
