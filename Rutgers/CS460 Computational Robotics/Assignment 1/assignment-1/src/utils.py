@@ -1,4 +1,6 @@
 import numpy as np
+import matplotlib as plt
+from mpl_toolkits.mplot3d import Axes3D
 
 def euler_to_rotation_matrix(roll: float, pitch: float, yaw: float) -> np.ndarray:
     """
@@ -55,3 +57,28 @@ def quaternion_to_rotation_matrix(q: np.ndarray) -> np.ndarray:
             [2 * (q2 * q4 - q1 * q3), 2 * (q3 * q4 + q1 * q2), 1 - 2 * (q2 ** 2 + q3 ** 2)]
         ]
     )
+    
+def visualize_rotation(R: np.ndarray):
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection = '3d')
+    
+    # Original vectors.
+    v0 = np.array([0, 0, 1])
+    v1 = np.array([0, 0.1, 0]) # Small epsilon value for v1.
+    
+    # Apply rotation.
+    v0_rotated = R @ v0
+    v1_rotated = R @ v1
+    
+    # Plot original and rotated vectors.
+    ax.quiver(0, 0, 0, v0[0], v0[1], v0[2], color = 'r', label = 'v0')
+    ax.quiver(0, 0, 0, v1[0], v1[1], v1[2], color = 'g', label = 'v1')
+    ax.quiver(0, 0, 0, v0_rotated[0], v0_rotated[1], v0_rotated[2], color = 'b', label = 'v0 rotated')
+    ax.quiver(0, 0, 0, v1_rotated[0], v1_rotated[1], v1_rotated[2], color = 'purple', label = 'v1 rotated')
+    
+    ax.set_xlim([-1, 1])
+    ax.set_ylim([-1, 1])
+    ax.set_zlim([-1, 1])
+    
+    plt.legend()
+    plt.show()
