@@ -1,0 +1,72 @@
+.Navbar {
+    background-color: #262626;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-title {
+    color: #ff0066;
+    font-size: 48px;
+}
+
+.navbar-items {
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-left: 40px;
+}
+
+.active-item {
+    cursor: none;
+    color: #ff0066;
+    border-bottom: 1.5px solid #ff0066;
+    font-size: 18px;
+    padding: 2.5px 5px;
+    margin: auto 10px;
+}
+
+.navbar-item {
+    color: #ffffff;
+    border-bottom: 1.5px solid #262626;
+    font-size: 18px;
+    padding: 2.5px 5px;
+    margin: auto 10px;
+    cursor: default;
+    transition: all 0.25s linear;
+}
+
+.navbar-item:hover {
+    color: #ff0066;
+    border-bottom: 1.5px solid #ff0066;
+}
+
+.navbar-controls-con {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.navbar-controls-message {
+    color: #ff0066;
+    margin-right: 20px;
+    font-size: 18px;
+}
+
+.navbar-controls-button {
+    outline: none;
+    border: 1.5px solid #ff0066;
+    background-color: #262626;
+    font-size: 18px;
+    color: #ff0066;
+    padding: 5px 10px;
+    transition: all 0.25s linear;
+}
+
+.navbar-controls-button:hover {
+    background-color: #ff0066;
+    color: #ffffff;
+    border: 1.5px solid #262626;
+}
