@@ -36,12 +36,8 @@
 #     ]
 #     path = forward_propagate_arm(start_pose, plan)
 #     visualize_arm_path(path)
-    
-    
-# Run the tests
-# test_component_iii()
+
 # test_component_iv()
-# print("\n--------------------\nAll tests passed!")
 
 
 import numpy as np
@@ -157,8 +153,8 @@ def test_component_iii():
     goal_pose = np.array([5, 5, np.pi / 2])
     
     interpolated_path = interpolate_rigid_body(start_pose, goal_pose)
-    # visualize_path(interpolated_path)
-    # print('\ninterpolated_path:\n', interpolated_path)
+    visualize_path(interpolated_path)
+    print('\ninterpolated_path:\n', interpolated_path)
     
     # start_pose = np.array([0.0, 0.0, 0.0])
     # plan = [
@@ -207,6 +203,12 @@ def test_component_iii():
     print(forward_propagated_path)
     visualize_path(forward_propagated_path)
 
+def test_component_iv():
+    print('\ntest_component_iv() called -->')
+
 # test_component_i()
 # test_component_ii()
-test_component_iii()
+# test_component_iii()
+# test_component_iv()
+
+print('\n*** All components tested ***')
