@@ -1,84 +1,114 @@
+# def visualize_rotation(R: np.ndarray):
+#     fig = plt.figure()
+#     ax = fig.add_subplot(111, projection = '3d')
+    
+#     # Original vectors.
+#     v0 = np.array([0, 0, 1])
+#     v1 = np.array([0, 0.1, 0]) # Small epsilon value for v1.
+    
+#     # Apply rotation.
+#     v0_rotated = R @ v0
+#     v1_rotated = R @ v1
+    
+#     # Plot original and rotated vectors.
+#     ax.quiver(0, 0, 0, v0[0], v0[1], v0[2], color = 'r', label = 'v0')
+#     ax.quiver(0, 0, 0, v1[0], v1[1], v1[2], color = 'g', label = 'v1')
+#     ax.quiver(0, 0, 0, v0_rotated[0], v0_rotated[1], v0_rotated[2], color = 'b', label = 'v0 rotated')
+#     ax.quiver(0, 0, 0, v1_rotated[0], v1_rotated[1], v1_rotated[2], color = 'purple', label = 'v1 rotated')
+    
+#     ax.set_xlim([-1, 1])
+#     ax.set_ylim([-1, 1])
+#     ax.set_zlim([-1, 1])
+    
+#     plt.legend()
+#     plt.show()
+    
+# def visualize_rotation_v2(rotation_matrix):
+#     # Define initial vectors (v0 = (0, 0, 1), v1 = (0, 1, 0))
+#     v0 = np.array([0, 0, 1])
+#     v1 = np.array([0, 1, 0])
+    
+#     # Rotate v0 and v1 using the generated rotation matrix.
+#     v0_rotated = rotation_matrix @ v0
+#     v1_rotated = rotation_matrix @ v1 - v0_rotated # As per the algorithm
+    
+#     # Plot original and rotated vectors on a 3D sphere.
+#     fig = plt.figure()
+#     ax = fig.add_subplot(111, projection = '3d')
+    
+#     # plot the sphere for visualization.
+#     u = np.linspace(0, 2 * np.pi, 100)
+#     v = np.linspace(0, np.pi, 100)
+#     x = np.outer(np.cos(u), np.sin(v))
+#     y = np.outer(np.sin(u), np.sin(v))
+#     z = np.outer(np.ones(np.size(u)), np.cos(v))
+#     ax.plot_surface(x, y, z, color = 'lightblue', alpha = 0.3)
+    
+#     # Plot vectors v0 and v1 (before rotation).
+#     ax.quiver(0, 0, 0, v0[0], v0[1], v0[2], color = 'r', label = 'v0 (before rotation)')
+#     ax.quiver(0, 0, 0, v1[0], v1[1], v1[2], color = 'g', label = 'v1 (before rotation)')
+    
+#     # plot vectors v0_rotated and v1_rotated (after rotation).
+#     ax.quiver(0, 0, 0, v0_rotated[0], v0_rotated[1], v0_rotated[2], color='b', label='v0 (after rotation)')
+#     ax.quiver(0, 0, 0, v1_rotated[0], v1_rotated[1], v1_rotated[2], color='orange', label='v1 (after rotation)')
+    
+#     ax.legend()
+#     plt.show()
+
 import numpy as np
-import matplotlib as plt
+import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
-def euler_to_rotation_matrix(roll: float, pitch: float, yaw: float) -> np.ndarray:
-    """
-        Converts Euler angles (roll, pitch, yaw) to a 3 x 3 rotation matrix.
-    """
-    R_x = np.array(
-        [
-            [1, 0, 0],
-            [0, np.cos(roll), -np.sin(roll)],
-            [0, np.sin(roll), np.cos(roll)]
-        ]
-    )
+def quaternion_to_rotation_matrix(q: np.array) -> np.ndarray:
+    # Qaternion elements
+    q0, q1, q2, q3 = q
     
-    R_y = np.array(
-        [
-            [np.cos(pitch), 0, np.sin(pitch)],
-            [0, -1, 0],
-            [-np.sin(pitch), 0, np.cos(pitch)]
-        ]
-    )
+    # Rotation matrix from quaternion
+    rotation_matrix = np.array([
+        [1 - 2 * (q2 ** 2 + q3 ** 2), 2 * (q1 * q2 - q0 * q3), 2 * (q1 * q3 + q0 * q2)],
+        [2 * (q1 * q2 + q0 * q3), 1 - 2 * (q1 ** 2 + q3 ** 2), 2 * (q2 * q3 - q0 * q1)],
+        [2 * (q1 * q3 - q0 * q2), 2 * (q2 * q3 + q0 * q1), 1 - 2 * (q1 ** 2 + q2 ** 2)]
+    ])
     
-    R_z = np.array(
-        [
-            [np.cos(yaw), -np.sin(yaw), 0],
-            [np.sin(yaw), np.cos(yaw), 0],
-            [0, 0, 1]
-        ]
-    )
-    
-    # Combine the rotations: R = R_z * R_y * R_x
-    return np.dot(R_z, np.dot(R_y, R_x))
+    return rotation_matrix
 
-def random_quaternion() -> np.ndarray:
-    """
-        Generate a random unit quaternion.
-    """
-    u1, u2, u3 = np.random.uniform(0, 1, 3)
-    q1 = np.sqrt(1 - u1) * np.sin(2 * np.pi * u2)
-    q2 = np.sqrt(1 - u1) * np.cos(2 * np.pi * u2)
-    q3 = np.sqrt(u1) * np.sin(2 * np.pi * u3)
-    q4 = np.sqrt(u1) * np.cos(2 * np.pi * u3)
+def visualize_rotation(m: np.ndarray):
+    # Define initial vectors (North pole and a nearby point)
+    v0 = np.array([0, 0, 1]) # North pole
+    epsilon = 1e-2 # small perturbation
+    v1 = np.array([0, epsilon, 1]) # a point slightly displaced
     
-    return np.array([q1, q2, q3, q4])
-
-def quaternion_to_rotation_matrix(q: np.ndarray) -> np.ndarray:
-    """
-        Convert a quaternion (q1, q2, q3, q4) into a 3 x 3 rotation matrix.
-    """
-    q1, q2, q3, q4 = q
-    return np.array(
-        [
-            [1 - 2 * (q3 ** 2 + q4 ** 2), 2 * (q2 * q3 - q1 * q4), 2 * (q2 * q4 + q1 * q3)],
-            [2 * (q2 * q3 + q1 * q4), 1 - 2 * (q2 ** 2 + q4 ** 2), 2 * (q3 * q4 - q1 * q2)],
-            [2 * (q2 * q4 - q1 * q3), 2 * (q3 * q4 + q1 * q2), 1 - 2 * (q2 ** 2 + q3 ** 2)]
-        ]
-    )
+    # Apply the rotation
+    v0_prime = m @ v0 # rotate v0
+    v1_prime = m @ v1 - v0 # rotate v1 and subtract v0 to get the direction
     
-def visualize_rotation(R: np.ndarray):
+    # Create a sphere for visualization
     fig = plt.figure()
     ax = fig.add_subplot(111, projection = '3d')
     
-    # Original vectors.
-    v0 = np.array([0, 0, 1])
-    v1 = np.array([0, 0.1, 0]) # Small epsilon value for v1.
+    # Create a sphere mesh
+    u = np.linspace(0, 2 * np.pi, 100)
+    v = np.linspace(0, np.pi, 100)
+    x = np.outer(np.cos(u), np.sin(v))
+    y = np.outer(np.sin(u), np.sin(v))
+    z = np.outer(np.ones(np.size(u)), np.cos(v))
     
-    # Apply rotation.
-    v0_rotated = R @ v0
-    v1_rotated = R @ v1
+    # Plot the sphere
+    ax.plot_surface(x, y, z, color = 'lightblue', alpha = 0.3, rstride = 5, cstride = 5)
     
-    # Plot original and rotated vectors.
-    ax.quiver(0, 0, 0, v0[0], v0[1], v0[2], color = 'r', label = 'v0')
-    ax.quiver(0, 0, 0, v1[0], v1[1], v1[2], color = 'g', label = 'v1')
-    ax.quiver(0, 0, 0, v0_rotated[0], v0_rotated[1], v0_rotated[2], color = 'b', label = 'v0 rotated')
-    ax.quiver(0, 0, 0, v1_rotated[0], v1_rotated[1], v1_rotated[2], color = 'purple', label = 'v1 rotated')
+    # Plot the original vector v0 (North pole)
+    ax.quiver(0, 0, 0, v0[0], v0[1], v0[2], color = 'blue', label = 'v0')
     
-    ax.set_xlim([-1, 1])
-    ax.set_ylim([-1, 1])
-    ax.set_zlim([-1, 1])
+    # Plot the rotated vector v0_prime
+    ax.quiver(0, 0, 0, v0_prime[0], v0_prime[1], v0_prime[2], color = 'red', label = 'v_0')
     
-    plt.legend()
+    # Plot the rotated vector v1_prime
+    ax.quiver(v0_prime[0], v0_prime[1], v0_prime[2], v1_prime[0], v1_prime[1], v1_prime[2], color = 'green', label = 'v_1')
+    
+    # Add labels and legend
+    ax.set_xlabel('X axis')
+    ax.set_ylabel('Y axis')
+    ax.set_zlabel('Z axis')
+    ax.legend()
+    
     plt.show()

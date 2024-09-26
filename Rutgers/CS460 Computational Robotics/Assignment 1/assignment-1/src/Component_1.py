@@ -1,42 +1,35 @@
 import numpy as np
 
-def check_SOn(matrix: m, float: epsilon = 0.01) -> bool:
-    # Step 1: Check if the matrix is a square.
-    if matrix.shape[0] != matrix.shape[1]:
+def check_SOn(m: np.ndarray, epsilon: float = 0.01) -> bool:
+    if m.shape[0] != m.shape[1]:
         return False
     
-    # Step 2: Check the orthogonality condition.
-    # --> m.T * m = I
-    identity = np.eye(matrix.shape[0]) # Identity matrix.
-    orthogonality_check = np.allclose(np.dot(matrix.T, matrix), identity, atol = epsilon)
+    identity_matrix = np.eye(m.shape[0])
+    orthogonality_check = np.allclose(np.dot(m.T, m), identity_matrix, atol = epsilon)
     
-    # Step 3: Check if the determinant is close to 1.
-    determinant_check = np.isclose(np.linalg.det(matrix), 1.0, atol = epsilon)
+    determinant_check = np.isclose(np.linalg.det(m), 1.0, atol = epsilon)
     
-    # Both checks must pass for matrix to bleong to SO(n)
     return orthogonality_check and determinant_check
 
-def check_quaternion(vector: v, float: epsilon = 0.01) -> bool:
-    # Step 1: Calculate the norm of the quaternion.
-    norm = np.linalg.norm(vector)
-    
-    # Step 2: Check if the norm is close to 1.
-    return np.isclose(norm, 1.0, atol = epsilon)
-
-def check_SEn(matrix: m, float: epsilon = 0.01) -> bool:
-    # Step 1: Check if the matrix has the correct shape (n + 1, n + 1).
-    n = matrix.shape[0] - 1
-    if matrix.shape[0] != matrix.shape[1] or (n != 2 and n != 3):
+def check_quaternion(v: np.array, epsilon: float = 0.01) -> bool:
+    if len(v) != 4:
         return False
     
-    # Step 2: Extract the rotation matrix (top-left n x n part).
-    rotation_matrix = matrix[:n, :n]
+    magnitude_squared = np.sum(np.square(v))
     
-    # Step 3: Check if the rotation matrix is in SO(n).
+    return np.abs(magnitude_squared - 1) < epsilon
+
+def check_SEn(m: np.ndarray, epsilon: float = 0.01) -> bool:
+    n = m.shape[0] - 1
+    
+    if m.shape[0] != m.shape[1] or (n not in [2, 3]):
+        return False
+    
+    rotation_matrix = m[:n, :n]
+    
     if not check_SOn(rotation_matrix, epsilon):
         return False
-    
-    # Step 4: Check if the last row [0, ..., 1] (for homogeneity).
-    last_row_check = np.allclose(matrix[n, :], np.append(np.zeros(n), 1), atol = epsilon)
+
+    last_row_check = np.allclose(m[n, :], np.append(np.zeros(n), 1), atol = epsilon)
     
     return last_row_check
