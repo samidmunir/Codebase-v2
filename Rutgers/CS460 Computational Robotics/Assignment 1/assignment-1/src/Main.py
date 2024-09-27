@@ -1,49 +1,8 @@
-
-# def test_component_iv():
-#     """
-#     Testing function interpolate_arm()
-#     """
-#     # start = (0, 0)
-#     # goal = (np.pi / 4, np.pi / 6)
-#     # path = interpolate_arm(start, goal)
-#     # print('Testing function interpolate_arm()...')
-#     # print('Interpolated path:\n', path)
-    
-#     """
-#     Testing function forward_propagate_arm()
-#     """
-#     """
-#     start_pose = (0, 0)
-#     plan = [
-#         (np.array([0.1, 0.05]), 10),
-#         (np.array([0.05, -0.1]), 8)
-#     ]
-#     print('\n\nTesting function forward_propagate_arm()...')
-#     path = forward_propagate_arm(start_pose, plan)
-#     print('Forward propagated path:\n', path)
-#     """
-#     """
-#     Testing function visualize_arm()
-#     """
-#     start_pose = [0.0, 0.0]
-#     plan = [
-#         ([0.1, 0.05], 5),
-#         ([0.2, -0.1], 3),
-#         ([0.5, 0.3], 2),
-#         ([0, 0.2], 4),
-#         ([-0.3, -0.2], 3),
-#         ([0.1, 0.0], 6)
-#     ]
-#     path = forward_propagate_arm(start_pose, plan)
-#     visualize_arm_path(path)
-
-# test_component_iv()
-
-
 import numpy as np
 from component_1 import check_SOn, check_quaternion, check_SEn
 from component_2 import random_rotation_matrix
 from component_3 import interpolate_rigid_body, forward_propagate_rigid_body, visualize_path
+from component_4 import interpolate_arm, forward_propagate_arm, visualize_arm_path
 
 def test_component_i():
     print('\ntest_component_i() called -->')
@@ -205,10 +164,49 @@ def test_component_iii():
 
 def test_component_iv():
     print('\ntest_component_iv() called -->')
+    print('\ttesting function interpolate_arm() + visualize_arm_path()')
+    start = (0, 0)
+    goal = (np.pi / 4, np.pi / 6)
+    path = interpolate_arm(start, goal)
+    visualize_arm_path(path)
+    
+    print('\n\ttesting function forward_propagate_arm() + visualize_arm_path()')
+    start_pose = (0, 0)
+    """
+    plan = [
+        (np.array([0.0, np.pi / 4]), 5),
+        (np.array([0.1, np.pi / 4]), 5),
+        (np.array([0.2, np.pi / 4]), 5),
+        (np.array([0.3, np.pi / 4]), 5),
+        (np.array([0.4, np.pi / 4]), 5),
+        (np.array([0.5, np.pi / 4]), 5),
+    ]
+    """
+    """
+    plan = [
+        ([0.1, 0.05], 5),
+        ([0.2, -0.1], 3),
+        ([0.5, 0.3], 2),
+        ([0, 0.2], 4),
+        ([-0.3, -0.2], 3),
+        ([0.1, 0.0], 6)
+    ]
+    """
+    plan = [
+        (np.array([0.1, 0.05]), 5),
+        (np.array([0.1, 0.05]), 5),
+        (np.array([0.1, 0.05]), 5),
+        (np.array([-0.1, -0.05]), 5),
+        (np.array([-0.1, -0.05]), 5),
+        (np.array([-0.1, -0.05]), 5)
+    ]
+    path = forward_propagate_arm(start_pose, plan)
+    visualize_arm_path(path)
+    
 
 # test_component_i()
 # test_component_ii()
 # test_component_iii()
-# test_component_iv()
+test_component_iv()
 
 print('\n*** All components tested ***')
