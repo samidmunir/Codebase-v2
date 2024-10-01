@@ -36,3 +36,8 @@
     background-color: #ff0066;
     /* border: 1px solid #262626; */
 }
+
+.message {
+    margin-left: 10px;
+    font-size: 12px;
+}

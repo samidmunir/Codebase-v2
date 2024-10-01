@@ -1,3 +1,144 @@
 .Settings {
-    border: 1px solid red;
+    background-color: #1a1a1a;
+}
+
+.settings-title h1 {
+    font-size: 32px;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
+}
+
+.flex-con-row {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.flex-col {
+    width: 300px;
+    /* border: 1px solid red; */
+    padding: 5px 10px;
+    background-color: #262626;
+    opacity: 0.75;
+    transition: all 0.4s linear;
+    cursor: default;
+}
+
+.flex-col:hover {
+    opacity: 1.0;
+}
+
+.flex-col h2 {
+    text-align: center;
+    color: #ff0066;
+    /* text-decoration: underline; */
+}
+
+.flex-col li {
+    color: #ffffff;
+    display: flex;
+    /* max-width: 200px; */
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.settings-list {
+    list-style: none;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: default;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #cccccc;
+    transition: 0.4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    /* background-color: white; */
+    background-color: #1a1a1a;
+    transition: 0.4s;
+}
+
+input:checked + .slider {
+    /* background-color: #2196f3; */
+    background-color: #ff0066;
+}
+
+input:focus + .slider {
+    /* box-shadow: 0 0 1px #2196f3; */
+    box-shadow: 0 0 1px #ff0066;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round::before {
+    border-radius: 50%;
+}
+
+.carousel-wrapper {
+    /* padding: 0px 47px; */
+    margin: 15px auto 0px auto;
+    max-height: 125px;
+    /* border: 1px solid #dddddd; */
+    width: 93.5%;
+    display: flex;
+    overflow-x: auto;
+}
+
+.carousel-wrapper::-webkit-scrollbar {
+    width: 0;
+}
+
+.carousel-wrapper .carousel-item-con {
+    min-width: 200px;
+    height: 125px;
+    line-height: 125px;
+    text-align: center;
+    /* background-color: #dddddd; */
+    background-color: #262626;
+    margin-right: 15px;
+    color: #ffffff;
+    opacity: 0.75;
+    cursor: default;
+    transition: all 0.4s linear;
+}
+
+.carousel-item-con:hover {
+    opacity: 1.0;
+    color: #ff0066;
+}
+
+.update-text-input {
+    height: 25px;
+    width: 125px;
 }
