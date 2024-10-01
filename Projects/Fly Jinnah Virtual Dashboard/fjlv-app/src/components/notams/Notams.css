@@ -1,0 +1,104 @@
+.Notams {
+    background-color: #1a1a1a;
+}
+
+.notams-title {
+    color: #ffffff;
+    font-size: 32px;
+    text-align: center;
+    padding: 20px;
+}
+
+.notams-flex-con {
+    /* width: 90%; */
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.notams-info-con {
+    background-color: #262626;
+    width: 250px;
+    height: 300px;
+    padding: 10px 20px;
+}
+
+.notams-info-con h2 {
+    color: #ff0066;
+    text-align: center;
+}
+
+.notams-info-con p {
+    color: #ffffff;
+}
+
+.notams-info-con h3 {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.recent-notam-con {
+    margin-top: 10px;
+}
+
+.recent-notam-con h4 {
+    text-decoration: underline;
+    text-align: center;
+    /* color: #ffffff; */
+}
+
+.recent-notam-con p {
+    font-size: 12px;
+    color: #ffffff;
+}
+
+.recent-notam-con button {
+    display: block;
+    border: 1px solid #ff0066;
+    background-color: #262626;
+    color: #ffffff;
+    font-size: 12px;
+    width: 50px;
+    padding: 2.5px 5px;
+    margin: 10px auto 0px auto;
+    text-align: center;
+    transition: all 0.25s linear;
+}
+
+.recent-notam-con button:hover {
+    border: 1px solid #262626;
+    background-color: #ff0066;
+}
+
+.notams-carousel-con {
+    height: 271px;
+}
+
+.notams-carousel-con div {
+    margin: 10px auto;
+}
+
+.create-notam-form-con {
+    margin-top: 20px;
+    text-align: center;
+    padding: 10px 20px;
+}
+
+.create-notam-form-con form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.create-notam-form-con form label {
+    margin-left: 20px;
+}
+
+.create-notam-form-con form input {
+    margin-left: 20px;
+    width: 200px;
+}
+
+.create-notam-form-con form select {
+    margin-left: 20px;
+}
