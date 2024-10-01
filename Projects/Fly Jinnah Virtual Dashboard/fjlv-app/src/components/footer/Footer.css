@@ -1,0 +1,36 @@
+.Footer {
+    /* border: 1px solid blue; */
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #262626;
+    /* height: 290px; */
+}
+
+.footer-flex-con {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.footer-col {
+    /* border: 1px solid green; */
+    max-width: 300px;
+    padding: 5px 10px;
+}
+
+.footer-col h2 {
+    color: #ff0066;
+    font-size: 24px;
+}
+
+.footer-col p {
+    color: #ffffff;
+    font-size: 12px;
+}
+
+.footer-note {
+    font-size: 18px;
+    text-align: center;
+    margin-top: 20px;
+    color: #ffffff;
+}

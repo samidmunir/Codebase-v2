@@ -1,0 +1,38 @@
+.NewsletterForm {
+    padding: 2.5px 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.NewsletterForm label {
+    color: #ffffff;
+    font-size: 16px;
+    margin-right: 10px;
+    padding: 2.5px 5px;
+}
+
+.NewsletterForm input {
+    background-color: #262626;
+    outline: none;
+    border: 1px solid #ff0066;
+    height: 20px;
+    padding: 2.5px 5px;
+    color: #ffffff;
+}
+
+.NewsletterForm button {
+    height: 20px;
+    font-size: 12px;
+    outline: none;
+    border: 1px solid #ff0066;
+    background-color: #262626;
+    color: #ffffff;
+    padding: 2.5px 5px;
+    transition: all 0.25s linear;
+}
+
+.NewsletterForm button:hover {
+    background-color: #ff0066;
+    /* border: 1px solid #262626; */
+}
