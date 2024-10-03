@@ -10,8 +10,8 @@ Sami Munir | Rutgers University | sami.munir2001@gmail.com
 ## Rutgers
 ### CS352 Internet Technology
 * Project 1
+### CS460 Computational Robotics
+* Assignment 1
 ## Python Programming
 * Sockets
 * Functions
-### CS460 Computational Robotics
-* Assignment 1
